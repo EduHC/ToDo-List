@@ -14,18 +14,14 @@ export default createGlobalStyle`
   }
 
   body {
-    background-image: url(${image});
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    background-attachment: fixed;
-    -webkit-font-smoothing: antialiased !important;
+  background-image: url(${image});
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased !important;
   }
 
-  body, input, button {
-    color: #222;
-    font-size: 14px;
-  }
 
   button {
     cursor: pointer;

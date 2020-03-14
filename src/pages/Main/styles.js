@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: #eee;
+  background: linear-gradient(to top, #aaa, #eee, #eee);
   max-width: 1000px;
-  min-height: 450px;
+  min-height: 400px;
   border-radius: 15px;
   padding: 30px;
-  margin: 80px auto;
+  margin: 100px auto;
   justify-content: center;
   flex-direction: row;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 
   h1 {
     font-size: 60px;

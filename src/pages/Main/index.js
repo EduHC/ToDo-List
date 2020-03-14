@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
@@ -20,19 +22,23 @@ export default class Main extends Component {
 
     const { newTodo, ToDos } = this.state;
 
-    this.setState({
-      ToDos: [...ToDos, newTodo],
-      newTodo: ''
-    });
+    if (newTodo !== '') {
+      this.setState({
+        ToDos: [...ToDos, newTodo],
+        newTodo: ''
+      });
+    }
   };
-  /*
-  handleDelete(id) {
+
+  handleDelete(key) {
     const { ToDos } = this.state;
 
-    const updatedArray = ToDos.filter();
+    const updatedArray = ToDos.filter(item => {
+      return item !== key;
+    });
 
     this.setState({ ToDos: updatedArray });
-  } */
+  }
 
   render() {
     const { newTodo, ToDos } = this.state;
@@ -63,11 +69,10 @@ export default class Main extends Component {
                 <FaPlus color="#fff" size={18} />
               </SubmitButton>
             </Form>
-
             <List>
               {ToDos.map(item => (
                 <li key={item.id}>
-                  <Button onClick={this.handleDelete}>
+                  <Button onClick={() => this.handleDelete(item)}>
                     <FaMinus size={15} color="#fff" />
                   </Button>
                   <span>{item}</span>
