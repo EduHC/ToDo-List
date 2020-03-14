@@ -13,6 +13,24 @@ export default class Main extends Component {
     ToDos: []
   };
 
+  // Carregar os dados no LocalStorage
+  componentDidMount() {
+    const todos = localStorage.getItem('ToDos');
+
+    if (todos) {
+      this.setState({ ToDos: JSON.parse(todos) });
+    }
+  }
+
+  // salvar os dados no localStorage
+  componentDidUpdate(_, prevState) {
+    const { ToDos } = this.state;
+
+    if (prevState.ToDos !== ToDos) {
+      localStorage.setItem('ToDos', JSON.stringify(ToDos));
+    }
+  }
+
   handleInputChange = e => {
     this.setState({ newTodo: e.target.value });
   };
