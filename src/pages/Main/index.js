@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import { FaPlus, FaRegListAlt, FaMinus } from 'react-icons/fa';
 
