@@ -1,24 +1,20 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background: linear-gradient(to top, #aaa, #eee, #eee);
-  max-width: 1000px;
-  min-height: 400px;
-  border-radius: 15px;
-  padding: 30px;
-  margin: 100px auto;
-  justify-content: center;
+  display: flex;
+  flex: 1;
   flex-direction: row;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  margin: 30px auto;
 
   h1 {
-    font-size: 60px;
+    font-size: 40px;
+    color: #420741;
+
     display: flex;
     flex-direction: row;
     align-items: center;
     align-self: center;
-    margin-left: 150px;
-    color: #420741;
+
     font-family: 'Poiret One', 'Fredericka the Great', cursive;
     font-optical-sizing: auto;
 
@@ -30,14 +26,20 @@ export const Container = styled.div`
 `;
 
 export const Body = styled.div`
-  max-width: 850px;
-  background: #eee;
-  min-height: 150px;
-  border-radius: 15px;
-  padding: 30px;
-  margin: 30px auto;
+  max-width: 900px;
+  min-width: 700px;
+  min-height: 400px;
+
+  display: flex;
   justify-content: center;
+  flex-direction: column;
+
+  background: #eee;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+  border-radius: 15px;
+  margin: 30px auto;
+  padding: 30px;
 `;
 
 export const Form = styled.form`
@@ -94,10 +96,13 @@ export const Button = styled.button.attrs({
 })`
   width: 23px;
   height: 22px;
+
+  background: #420741;
+
   border: none;
   border-radius: 5px;
-  background: #420741;
   margin-right: 10px;
+
   display: flex;
   align-items: center;
   justify-content: center;

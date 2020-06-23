@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FaPlus, FaRegListAlt, FaMinus } from 'react-icons/fa';
 
 import { Container, Form, SubmitButton, List, Body, Button } from './styles';
+import image from '../../images/background.svg';
 
 export default class Main extends Component {
   state = {
@@ -58,44 +59,44 @@ export default class Main extends Component {
     const { newTodo, ToDos } = this.state;
 
     return (
-      <>
-        <Container>
-          <head>
-            <link
-              href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Poiret+One&display=swap"
-              rel="stylesheet"
-            />
-          </head>
+      <Container>
+        <head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Poiret+One&display=swap"
+            rel="stylesheet"
+          />
+        </head>
+
+        <Body>
           <h1>
-            <FaRegListAlt size={50} color="#420741" />
+            <FaRegListAlt size={35} color="#420741" />
             Lista de Afazeres
           </h1>
-          <Body>
-            <Form onSubmit={this.handleSubmit}>
-              <input
-                type="text"
-                placeholder="Adicionar afazer"
-                value={newTodo}
-                onChange={this.handleInputChange}
-              />
+          <Form onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="Adicionar afazer"
+              value={newTodo}
+              onChange={this.handleInputChange}
+            />
 
-              <SubmitButton>
-                <FaPlus color="#fff" size={18} />
-              </SubmitButton>
-            </Form>
-            <List>
-              {ToDos.map(item => (
-                <li key={item.id}>
-                  <Button onClick={() => this.handleDelete(item)}>
-                    <FaMinus size={15} color="#fff" />
-                  </Button>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </List>
-          </Body>
-        </Container>
-      </>
+            <SubmitButton>
+              <FaPlus color="#fff" size={18} />
+            </SubmitButton>
+          </Form>
+          <List>
+            {ToDos.map(item => (
+              <li key={item.id}>
+                <Button onClick={() => this.handleDelete(item)}>
+                  <FaMinus size={15} color="#fff" />
+                </Button>
+                <span>{item}</span>
+              </li>
+            ))}
+          </List>
+        </Body>
+        <img src={image} alt="Imagem" />
+      </Container>
     );
   }
 }

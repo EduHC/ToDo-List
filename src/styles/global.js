@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import image from '../images/fundo2.jpg';
 
 export default createGlobalStyle`
   * {
@@ -14,14 +13,9 @@ export default createGlobalStyle`
   }
 
   body {
-  background-image: url(${image});
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #E7E9EA;
   -webkit-font-smoothing: antialiased !important;
   }
-
 
   button {
     cursor: pointer;
