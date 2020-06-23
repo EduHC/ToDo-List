@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FaPlus, FaRegListAlt, FaMinus } from 'react-icons/fa';
 
-import { Container, Form, SubmitButton, List, Body, Button } from './styles';
+import { Container, Form, AddButton, List, Body, DeleteButton } from './styles';
 import image from '../../images/background.svg';
 
 export default class Main extends Component {
@@ -69,7 +69,7 @@ export default class Main extends Component {
 
         <Body>
           <h1>
-            <FaRegListAlt size={35} color="#420741" />
+            <FaRegListAlt size={40} color="#420741" />
             Lista de Afazeres
           </h1>
           <Form onSubmit={this.handleSubmit}>
@@ -80,16 +80,16 @@ export default class Main extends Component {
               onChange={this.handleInputChange}
             />
 
-            <SubmitButton>
+            <AddButton>
               <FaPlus color="#fff" size={18} />
-            </SubmitButton>
+            </AddButton>
           </Form>
           <List>
             {ToDos.map(item => (
               <li key={item.id}>
-                <Button onClick={() => this.handleDelete(item)}>
+                <DeleteButton onClick={() => this.handleDelete(item)}>
                   <FaMinus size={15} color="#fff" />
-                </Button>
+                </DeleteButton>
                 <span>{item}</span>
               </li>
             ))}

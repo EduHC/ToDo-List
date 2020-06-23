@@ -6,9 +6,37 @@ export const Container = styled.div`
   flex-direction: row;
   margin: 30px auto;
 
+  img {
+    width: 400px;
+    height: 400px;
+
+    align-self: flex-start;
+  }
+`;
+
+export const Body = styled.div`
+  max-width: 900px;
+  min-width: 700px;
+  min-height: 300px;
+  max-height: 500px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #eee;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.21);
+
+  border-radius: 10px;
+  margin: 10rem auto;
+  padding: 20px;
+
   h1 {
-    font-size: 40px;
+    font-size: 50px;
     color: #420741;
+
+    position: absolute;
+    left: 10px;
+    top: 20px;
 
     display: flex;
     flex-direction: row;
@@ -18,6 +46,9 @@ export const Container = styled.div`
     font-family: 'Poiret One', 'Fredericka the Great', cursive;
     font-optical-sizing: auto;
 
+    text-shadow: 1px 1px 8px #73276b;
+    letter-spacing: 6px;
+
     svg {
       margin-right: 10px;
       margin-left: 30px;
@@ -25,25 +56,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Body = styled.div`
-  max-width: 900px;
-  min-width: 700px;
-  min-height: 400px;
-
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  background: #eee;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-
-  border-radius: 15px;
-  margin: 30px auto;
-  padding: 30px;
-`;
-
 export const Form = styled.form`
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
 
@@ -56,7 +69,7 @@ export const Form = styled.form`
   }
 `;
 
-export const SubmitButton = styled.button.attrs({
+export const AddButton = styled.button.attrs({
   type: 'submit'
 })`
   width: 40px;
@@ -71,7 +84,21 @@ export const SubmitButton = styled.button.attrs({
 
 export const List = styled.ul`
   list-style: none;
+
   margin-top: 30px;
+  max-height: 480px;
+
+  overflow: auto;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #73276b;
+    border-radius: 10px;
+  }
 
   li {
     font-size: 20px;
@@ -91,7 +118,7 @@ export const List = styled.ul`
   }
 `;
 
-export const Button = styled.button.attrs({
+export const DeleteButton = styled.button.attrs({
   type: 'submit'
 })`
   width: 23px;
