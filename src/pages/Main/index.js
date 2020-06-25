@@ -69,7 +69,7 @@ export default class Main extends Component {
 
         <Body>
           <h1>
-            <FaRegListAlt size={40} color="#B80509" />
+            <FaRegListAlt size={40} color="#A68738" />
             Lista de Afazeres
           </h1>
           <Form onSubmit={this.handleSubmit}>
@@ -84,16 +84,20 @@ export default class Main extends Component {
               <FaPlus color="#fff" size={15} />
             </AddButton>
           </Form>
-          <List>
-            {ToDos.map(item => (
-              <li key={item.id}>
-                <DeleteButton onClick={() => this.handleDelete(item)}>
-                  <FaMinus size={10} color="#fff" />
-                </DeleteButton>
-                <span>{item}</span>
-              </li>
-            ))}
-          </List>
+          {ToDos.length < 1 ? (
+            <text>Nenhum afazer listado</text>
+          ) : (
+            <List>
+              {ToDos.map(item => (
+                <li key={item.id}>
+                  <DeleteButton onClick={() => this.handleDelete(item)}>
+                    <FaMinus size={10} color="#fff" />
+                  </DeleteButton>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </List>
+          )}
         </Body>
         <img src={image} alt="Imagem" />
       </Container>

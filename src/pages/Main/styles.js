@@ -18,22 +18,29 @@ export const Container = styled.div`
 export const Body = styled.div`
   min-width: 700px;
 
-  min-height: 200px;
-  max-height: 500px;
+  height: 500px;
 
   display: flex;
   flex-direction: column;
 
   background: #eee;
-  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 3px 5px rgba(166, 135, 56, 0.8);
 
   border-radius: 5px;
   margin: 6rem 5rem 4rem 2rem;
   padding: 20px;
 
+  text {
+    align-self: center;
+    justify-self: center;
+    color: #86797c;
+    font-size: 24px;
+    margin-top: 10rem;
+  }
+
   h1 {
     font-size: 70px;
-    color: #d51519;
+    color: #a68738;
 
     position: absolute;
     left: 10px;
@@ -47,7 +54,7 @@ export const Body = styled.div`
     font-family: 'Poiret One', 'Fredericka the Great', cursive;
     font-optical-sizing: auto;
 
-    text-shadow: 1px 3px 2px rgba(0, 0, 0, 0.2);
+    text-shadow: 4px 3px 2px rgba(0, 0, 0, 0.2);
     letter-spacing: 6px;
 
     svg {
@@ -66,7 +73,7 @@ export const Form = styled.form`
     font-size: 18px;
 
     border-style: none;
-    border: 1px solid #6b2269;
+    border: 1px solid #504547;
     border-radius: 4px;
     padding: 10px 15px;
 
@@ -79,7 +86,7 @@ export const List = styled.ul`
   list-style: none;
 
   margin-top: 30px;
-  max-height: 480px;
+  max-height: 430px;
 
   overflow: auto;
 
@@ -89,7 +96,7 @@ export const List = styled.ul`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #b80509;
+    background: #504547;
     border-radius: 10px;
   }
 
@@ -104,7 +111,8 @@ export const List = styled.ul`
     width: 95%;
 
     & + li {
-      border-top: 1px solid #420741;
+      border-top: 1px solid #504547;
+      border-radius: 2px;
     }
 
     span {
@@ -119,7 +127,7 @@ export const AddButton = styled.button.attrs({
 })`
   width: 40px;
 
-  background: linear-gradient(#6b2269, #571555, #490a46);
+  background: linear-gradient(#a68738, #c1a350, #896a21);
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 
   display: flex;
@@ -131,10 +139,16 @@ export const AddButton = styled.button.attrs({
   border-radius: 6px;
   border: 0;
 
-  transition: 0.4s;
+  transition: hover 0.4s;
 
   &:hover {
     opacity: 0.9;
+  }
+
+  &:active {
+    background: #86797c;
+    background: linear-gradient(#706466, #86797c, #605456);
+    box-shadow: -1px -1px rgba(0, 0, 0, 0.2);
   }
 `;
 
@@ -145,6 +159,7 @@ export const DeleteButton = styled.button.attrs({
   height: 22px;
 
   background: linear-gradient(#6b2269, #571555, #490a46);
+  background: linear-gradient(#a68738, #c1a350, #896a21);
   box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 
   border: none;
@@ -155,9 +170,15 @@ export const DeleteButton = styled.button.attrs({
   align-items: center;
   justify-content: center;
 
-  transition: 0.4s;
+  transition: hover 0.4s;
 
   &:hover {
     opacity: 0.9;
+  }
+
+  &:active {
+    background: #86797c;
+    background: linear-gradient(#706466, #86797c, #605456);
+    box-shadow: -1px -1px rgba(0, 0, 0, 0.2);
   }
 `;

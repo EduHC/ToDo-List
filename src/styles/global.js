@@ -15,6 +15,17 @@ export default createGlobalStyle`
   body {
   background-color: #E7E9EA;
   -webkit-font-smoothing: antialiased !important;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #504547;
+    border-radius: 10px;
+  }
+
   }
 
   button {
