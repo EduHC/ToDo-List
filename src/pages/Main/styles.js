@@ -1,92 +1,124 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 0.5fr 6.5fr 4fr;
+  grid-template-areas: '. body background-style';
+
+  height: 650px;
+
   margin: 30px auto;
-
-  img {
-    width: 500px;
-    height: 500px;
-    margin: 30px auto;
-
-    align-self: flex-start;
-  }
 `;
 
 export const Body = styled.div`
-  min-width: 700px;
-
-  height: 500px;
+  grid-area: body;
+  width: 100%;
+  height: 90%;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  background: #eee;
-  box-shadow: 2px 3px 5px rgba(166, 135, 56, 0.8);
+  margin: auto;
 
-  border-radius: 5px;
-  margin: 6rem 5rem 4rem 2rem;
-  padding: 20px;
+  border-radius: 8px;
 
-  text {
-    align-self: center;
-    justify-self: center;
-    color: #86797c;
-    font-size: 24px;
-    margin-top: 10rem;
+  background: #f6f6f6;
+
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25), 1px 2px 8px rgba(0, 0, 0, 0.5);
+`;
+
+export const BackgroundStyle = styled.div`
+  grid-area: background-style;
+
+  width: 100%;
+  heigth: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 350px;
+    height: 350px;
+    margin-top: 30px;
   }
 
   h1 {
-    font-size: 70px;
-    color: #a68738;
+    font-size: 48px;
+    background: -webkit-linear-gradient(left, rgba(73, 73, 73, 0.8), #000);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-transform: rotate(10deg);
+  }
 
-    position: absolute;
-    left: 10px;
-    top: 20px;
+  button {
+    width: 85px;
+    height: 35px;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-self: center;
+    border-style: none;
+    border-radius: 8px;
 
-    font-family: 'Poiret One', 'Fredericka the Great', cursive;
-    font-optical-sizing: auto;
+    background: #3c6e71;
+    color: #f0f0f0;
 
-    text-shadow: 4px 3px 2px rgba(0, 0, 0, 0.2);
-    letter-spacing: 6px;
+    box-shadow: 1px 2px 2px rgba(73, 73, 73, 0.5);
 
-    svg {
-      margin-right: 10px;
-      margin-left: 30px;
+    &:active {
+      width: 83px;
+      height: 33px;
+      background: rgba(60, 110, 113, 0.8);
     }
   }
 `;
 
-export const Form = styled.form`
+export const InputField = styled.form`
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 80%;
+  margin: 20px;
 
   input {
-    flex: 1;
-    font-size: 18px;
+    width: 550px;
+    height: 45px;
+    font-size: 14px;
 
     border-style: none;
-    border: 1px solid #504547;
-    border-radius: 4px;
+    border: 1px solid #636363;
+    border-radius: 8px;
     padding: 10px 15px;
 
-    background: none;
-    box-shadow: inset -1px -1px 1px 1px rgba(0, 0, 0, 0.2);
+    background: white;
+  }
+
+  button {
+    width: 85px;
+    height: 35px;
+
+    border-style: none;
+    border-radius: 8px;
+
+    background: #3c6e71;
+    color: #f0f0f0;
+
+    box-shadow: 1px 2px 2px rgba(73, 73, 73, 0.5);
+
+    &:active {
+      width: 83px;
+      height: 33px;
+      background: rgba(60, 110, 113, 0.8);
+    }
   }
 `;
 
 export const List = styled.ul`
   list-style: none;
 
-  margin-top: 30px;
-  max-height: 430px;
+  margin-top: 20px;
+  height: 400px;
+  width: 630px;
 
   overflow: auto;
 
@@ -101,12 +133,12 @@ export const List = styled.ul`
   }
 
   li {
-    font-size: 20px;
-    padding: 15px 0;
+    padding: 15px 15px;
+
     display: flex;
     flex-direction: row;
     align-items: center;
-    color: #2b3036;
+    justify-content: space-between;
 
     width: 95%;
 
@@ -119,66 +151,89 @@ export const List = styled.ul`
       font-size: 20px;
       font-family: cursive;
     }
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin-right: 30px;
+      transition: 0.5s;
+    }
+
+    div {
+      height: 100%;
+      width: 70%;
+
+      display: flex;
+      align-items: center;
+    }
   }
 `;
 
-export const AddButton = styled.button.attrs({
-  type: 'submit'
-})`
-  width: 40px;
-
-  background: linear-gradient(#a68738, #c1a350, #896a21);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+export const NoTodoDiv = styled.div`
+  width: 100%;
+  height: 100%;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  margin-left: 10px;
+  font-size: 24px;
+  color: rgba(73, 73, 73, 0.6);
 
-  border-radius: 6px;
-  border: 0;
-
-  transition: hover 0.4s;
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  &:active {
-    background: #86797c;
-    background: linear-gradient(#706466, #86797c, #605456);
-    box-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+  img {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 30px;
   }
 `;
 
-export const DeleteButton = styled.button.attrs({
-  type: 'submit'
-})`
-  width: 23px;
-  height: 22px;
-
-  background: linear-gradient(#6b2269, #571555, #490a46);
-  background: linear-gradient(#a68738, #c1a350, #896a21);
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
-
-  border: none;
-  border-radius: 5px;
-  margin-right: 10px;
+export const Statistics = styled.div`
+  width: 100%;
+  height: 30px;
 
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
-  transition: hover 0.4s;
+  text {
+    font-size: 24px;
+    color: #494949;
+  }
+`;
+
+export const ConfirmButton = styled.button`
+  width: 30px;
+  height: 30px;
+
+  button-style: none;
+  border-style: none;
+
+  background: none;
+
+  margin-right: 15px;
+
+  transition: 0.5s;
 
   &:hover {
-    opacity: 0.9;
+    width: 35px;
+    height: 35px;
   }
+`;
 
-  &:active {
-    background: #86797c;
-    background: linear-gradient(#706466, #86797c, #605456);
-    box-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+export const CancelButton = styled.button`
+  width: 30px;
+  height: 30px;
+
+  button-style: none;
+  border-style: none;
+
+  background: none;
+
+  transition: 0.5s;
+
+  &:hover {
+    width: 35px;
+    height: 35px;
   }
 `;

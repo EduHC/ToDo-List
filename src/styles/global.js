@@ -13,8 +13,10 @@ export default createGlobalStyle`
   }
 
   body {
-  background-color: #E7E9EA;
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased !important;
+
+  overflow: hidden;
 
   ::-webkit-scrollbar {
     width: 10px;

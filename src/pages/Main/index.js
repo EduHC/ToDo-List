@@ -1,106 +1,149 @@
-import React, { Component } from 'react';
-import { FaPlus, FaRegListAlt, FaMinus } from 'react-icons/fa';
+import React, { useRef, useState, useEffect } from 'react';
 
-import { Container, Form, AddButton, List, Body, DeleteButton } from './styles';
-import image from '../../images/background.svg';
+import {
+  Container,
+  InputField,
+  List,
+  Body,
+  BackgroundStyle,
+  NoTodoDiv,
+  Statistics,
+  ConfirmButton,
+  CancelButton
+} from './styles';
 
-export default class Main extends Component {
-  state = {
-    newTodo: '',
-    ToDos: []
-  };
+import backgroundImage from '../../assets/background.svg';
+import happyImage from '../../assets/smile.svg';
+import confirmIcon from '../../assets/confirm.svg';
+import deleteIcon from '../../assets/delete.svg';
+
+export default function Main() {
+  const [toDos, setToDos] = useState([]);
+  const [newTodo, setNewToDo] = useState('');
+  const [concluded, setConcluded] = useState(0);
+  const [canceled, setCanceled] = useState(0);
+  const oldToDos = useRef(toDos);
+  const oldConcluded = useRef(concluded);
+  const oldCanceled = useRef(canceled);
 
   // Carregar os dados no LocalStorage
-  componentDidMount() {
+  useEffect(() => {
     const todos = localStorage.getItem('ToDos');
+    const totalConcluded = localStorage.getItem('TotalConcluded');
+    const totalCanceled = localStorage.getItem('TotalCanceled');
 
-    if (todos) {
-      this.setState({ ToDos: JSON.parse(todos) });
-    }
-  }
+    if (todos) setToDos(JSON.parse(todos));
+    if (totalConcluded) setConcluded(Number(totalConcluded));
+    if (totalCanceled) setCanceled(Number(totalCanceled));
+  }, []);
 
   // salvar os dados no localStorage
-  componentDidUpdate(_, prevState) {
-    const { ToDos } = this.state;
+  useEffect(() => {
+    if (oldToDos !== toDos)
+      localStorage.setItem('ToDos', JSON.stringify(toDos));
 
-    if (prevState.ToDos !== ToDos) {
-      localStorage.setItem('ToDos', JSON.stringify(ToDos));
-    }
+    if (oldConcluded !== concluded)
+      localStorage.setItem('TotalConcluded', JSON.stringify(concluded));
+
+    if (oldCanceled !== canceled)
+      localStorage.setItem('TotalCanceled', JSON.stringify(canceled));
+  }, [toDos]);
+
+  function handleInputChange(e) {
+    setNewToDo(e.target.value);
   }
 
-  handleInputChange = e => {
-    this.setState({ newTodo: e.target.value });
-  };
-
-  handleSubmit = e => {
+  function handleSubmit(e) {
     e.preventDefault();
 
-    const { newTodo, ToDos } = this.state;
-
     if (newTodo !== '') {
-      this.setState({
-        ToDos: [...ToDos, newTodo],
-        newTodo: ''
-      });
+      const arrayOfTodos = [...toDos, newTodo];
+
+      setToDos(arrayOfTodos);
+      setNewToDo('');
     }
-  };
+  }
 
-  handleDelete(key) {
-    const { ToDos } = this.state;
-
-    const updatedArray = ToDos.filter(item => {
-      return item !== key;
+  function handleDelete(itemList, action) {
+    const updatedArrayOfTodos = toDos.filter(item => {
+      return item !== itemList;
     });
 
-    this.setState({ ToDos: updatedArray });
+    if (action === 'concluded') {
+      setConcluded(concluded + 1);
+    } else {
+      setCanceled(canceled + 1);
+    }
+
+    setToDos(updatedArrayOfTodos);
   }
 
-  render() {
-    const { newTodo, ToDos } = this.state;
+  function resetNumbers() {
+    setCanceled(0);
+    setConcluded(0);
 
-    return (
-      <Container>
-        <head>
-          <link
-            href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Poiret+One&display=swap"
-            rel="stylesheet"
+    localStorage.setItem('TotalConcluded', JSON.stringify(0));
+    localStorage.setItem('TotalCanceled', JSON.stringify(0));
+  }
+
+  return (
+    <Container>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Poiret+One&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+
+      <Body>
+        <InputField onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Digite seu compromisso..."
+            value={newTodo}
+            onChange={handleInputChange}
           />
-        </head>
-
-        <Body>
-          <h1>
-            <FaRegListAlt size={40} color="#A68738" />
-            Lista de Afazeres
-          </h1>
-          <Form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              placeholder="Adicionar afazer"
-              value={newTodo}
-              onChange={this.handleInputChange}
-            />
-
-            <AddButton>
-              <FaPlus color="#fff" size={15} />
-            </AddButton>
-          </Form>
-          {ToDos.length < 1 ? (
+          <button type="submit">
+            <text>Adicionar</text>
+          </button>
+        </InputField>
+        {toDos.length < 1 ? (
+          <NoTodoDiv>
+            <img src={happyImage} alt="Happy face" />
             <text>Nenhum afazer listado</text>
-          ) : (
-            <List>
-              {ToDos.map(item => (
-                <li key={item.id}>
-                  <DeleteButton onClick={() => this.handleDelete(item)}>
-                    <FaMinus size={10} color="#fff" />
-                  </DeleteButton>
+          </NoTodoDiv>
+        ) : (
+          <List>
+            {toDos.map(item => (
+              <li key={item.id}>
+                <div>
+                  <ConfirmButton
+                    onClick={() => handleDelete(item, 'concluded')}
+                  >
+                    <img src={confirmIcon} alt="Confirmation Icon" />
+                  </ConfirmButton>
                   <span>{item}</span>
-                </li>
-              ))}
-            </List>
-          )}
-        </Body>
-        <img src={image} alt="Imagem" />
-      </Container>
-    );
-  }
+                </div>
+
+                <CancelButton onClick={() => handleDelete(item, 'canceled')}>
+                  <img src={deleteIcon} alt="Delete Icon" />
+                </CancelButton>
+              </li>
+            ))}
+          </List>
+        )}
+      </Body>
+      <BackgroundStyle>
+        <h1>Get Things Done!</h1>
+        <img src={backgroundImage} alt="background-style" />
+        <Statistics>
+          <text>Concluído: {concluded}</text>
+          <text>Cancelado: {canceled}</text>
+        </Statistics>
+        <button type="submit" onClick={resetNumbers}>
+          <text>Recomeçar!</text>
+        </button>
+      </BackgroundStyle>
+    </Container>
+  );
 }
