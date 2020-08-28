@@ -47,7 +47,7 @@ export default function Main() {
 
     if (oldCanceled !== canceled)
       localStorage.setItem('TotalCanceled', JSON.stringify(canceled));
-  }, [toDos]);
+  }, [toDos, concluded, canceled]);
 
   function handleInputChange(e) {
     setNewToDo(e.target.value);
@@ -65,20 +65,22 @@ export default function Main() {
   }
 
   function handleDelete(itemList, action) {
-    const updatedArrayOfTodos = toDos.filter(item => {
-      return item !== itemList;
-    });
+    const updatedArrayOfToDos = toDos;
+
+    updatedArrayOfToDos.splice(updatedArrayOfToDos.indexOf(itemList), 1);
+
+    setToDos(updatedArrayOfToDos);
 
     if (action === 'concluded') {
       setConcluded(concluded + 1);
     } else {
       setCanceled(canceled + 1);
     }
-
-    setToDos(updatedArrayOfTodos);
   }
 
-  function resetNumbers() {
+  function resetNumbers(e) {
+    e.preventDefault();
+
     setCanceled(0);
     setConcluded(0);
 
